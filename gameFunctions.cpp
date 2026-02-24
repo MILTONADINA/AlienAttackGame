@@ -14,12 +14,15 @@
  * Moves the ship based on the user input.
  * @param ship The Pixie object representing the ship.
  */
-void moveShip(Pixie& ship) {
-    const float shipWidth = ship.getSprite().getGlobalBounds().width;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && ship.getX() > 0) {
-        ship.move(-DISTANCE, 0);  // Move ship left
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && ship.getX() + shipWidth < WINDOW_WIDTH) {
-        ship.move(DISTANCE, 0);  // Move ship right
-    }
+void moveShip(Pixie &ship, float deltaTime) {
+  const float shipWidth = ship.getSprite().getGlobalBounds().size.x;
+  // Scale distance by 60 for roughly the same speed as before (which assumed
+  // ~60fps)
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) && ship.getX() > 0) {
+    ship.move(-DISTANCE * 60.0f * deltaTime, 0); // Move ship left
+  }
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right) &&
+      ship.getX() + shipWidth < WINDOW_WIDTH) {
+    ship.move(DISTANCE * 60.0f * deltaTime, 0); // Move ship right
+  }
 }

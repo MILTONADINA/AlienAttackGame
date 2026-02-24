@@ -11,7 +11,9 @@
 
 #include "pixie.h"
 
-void moveShip(Pixie& ship);  // Function prototype for moving the ship based on keyboard input.
+void moveShip(Pixie &ship,
+              float deltaTime); // Function prototype for moving the ship based
+                                // on keyboard input.
 
 #endif // GAME_FUNCTIONS_H
 #pragma once
